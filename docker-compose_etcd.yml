@@ -17,8 +17,14 @@ services:
       placement:
         constraints:
           - node.hostname == swarm-01
-    networks:
+    networks: &networks
       - postgres-network
+    healthcheck: &healthcheck
+      test: ["CMD", "etcdctl", "endpoint", "health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
 
   etcd2:
     image: docker.io/bitnami/etcd:3
@@ -36,8 +42,8 @@ services:
       placement:
         constraints:
           - node.hostname == swarm-02
-    networks:
-      - postgres-network
+    networks: *networks
+    healthcheck: *healthcheck
 
   etcd3:
     image: docker.io/bitnami/etcd:3
@@ -55,9 +61,8 @@ services:
       placement:
         constraints:
           - node.hostname == swarm-03
-    networks:
-      - postgres-network
-
+    networks: *networks
+    healthcheck: *healthcheck
 networks:
   postgres-network:
     external: true
