@@ -94,7 +94,7 @@ services:
     image: docker.io/bitnami/pgpool
     env_file: .env_postgres
     deploy:
-      mode: global
+      replicas: 2
     healthcheck:
       test: ["CMD", "/opt/bitnami/scripts/pgpool/healthcheck.sh"]
       interval: 10s
