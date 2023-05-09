@@ -1,9 +1,11 @@
 version: '3.8'
 
 services:
+  # Postgres Master
   pg-1: &pg
     image: 'bitnami/postgresql-repmgr:latest'
-    networks: [ postgres-network ]
+    networks:
+      - postgres-network
     volumes:
       - pg_data:/bitnami/postgresql
     environment:
@@ -38,8 +40,10 @@ services:
       - ETCD_INITIAL_CLUSTER_STATE=new
     deploy:
       <<: *swarm-01
-    networks: [ postgres-network ]
+    networks:
+      - postgres-network
 
+  # Postgres Node2
   pg-2:
     <<: *pg
     volumes:
@@ -77,7 +81,7 @@ services:
     deploy:
       <<: *swarm-02
 
-
+  # Postgres Node3
   pg-3:
     <<: *pg
     volumes:
