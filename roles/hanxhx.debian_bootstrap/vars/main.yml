@@ -1,0 +1,55 @@
+---
+
+dbs_packages:
+  - apt-transport-https
+  - aptitude
+  - bash-completion
+  - binutils
+  - bmon
+  - cpanminus
+  - curl
+  - cron
+  - cron-apt
+  - debconf-utils
+  - debian-goodies
+  - dnsutils
+  - gawk
+  - gnupg
+  - git
+  - hdparm
+  - htop
+  - hping3
+  - iotop
+  - iptraf-ng
+  - jq
+  - locales
+  - lsb-release
+  - lsof
+  - lynx
+  - make
+  - most
+  - mutt
+  - netcat-openbsd
+  - netcat-traditional
+  - nmap
+  - nmon
+  - parallel
+  - psmisc
+  - pv
+  - python{% if ansible_python_version is version('3', '>=') %}3{% endif %}-pip
+  - python{% if ansible_python_version is version('3', '>=') %}3{% endif %}-pycurl
+  - pwgen
+  - reptyr
+  - rsyslog
+  - rsync
+  - screen
+  - strace
+  - sudo
+  - swaks
+  - sysstat
+  - telnet
+  - tcpdump
+  - unzip
+  - vim
+
+dbs_sysvinit_packages: ["sysvinit-core", "sysvinit-utils"]

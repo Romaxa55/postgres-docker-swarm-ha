@@ -1,0 +1,38 @@
+---
+
+- name: "Linux::hostname | Check variables"
+  fail:
+    msg: "Linux::hosts | The <linux_hosts_hosts> variable is not set"
+  when: linux_hosts_hosts is not defined or not linux_hosts_hosts
+
+# Clear
+
+- name: "Linux::hosts | Clear the /etc/hosts file"
+  lineinfile:
+    path: /etc/hosts
+    regexp: '^.* {{ loop_host.hostnames }}$'
+    state: absent
+  with_items: "{{ linux_hosts_hosts }}"
+  loop_control:
+    loop_var: loop_host
+
+# Update
+
+- name: "Linux::hosts | Set the /etc/hosts file"
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    regexp: '^# Ansible hosts$'
+    line: "# Ansible hosts"
+    state: present
+
+- name: "Linux::hosts | Set the /etc/hosts file"
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    regexp: '^.* {{ loop_host.hostnames }}$'
+    line: "{{ loop_host.address }} {{ loop_host.hostnames }}"
+    firstmatch: true
+    insertafter: '^# Ansible hosts$'
+    state: present
+  with_items: "{{ linux_hosts_hosts }}"
+  loop_control:
+    loop_var: loop_host

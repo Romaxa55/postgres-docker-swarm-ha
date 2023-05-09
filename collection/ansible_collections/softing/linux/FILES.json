@@ -1,0 +1,740 @@
+{
+ "files": [
+  {
+   "name": ".",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": ".github",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": ".github/workflows",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": ".github/workflows/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2769572ce7e7953e271a61939ed3380f74178dc1105005fab0675a79c6e89c20",
+   "format": 1
+  },
+  {
+   "name": "plugins",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "plugins/README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "854081319843a15a95afeee3d0d6f5a17bd7f57ec0ad89e6c96e1481d4e8f64a",
+   "format": 1
+  },
+  {
+   "name": "meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "meta/runtime.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6f1dc5bad47ed9397e4200595033a84b18eb5904cce54a634f293258c2137ff9",
+   "format": 1
+  },
+  {
+   "name": "roles",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_mailutils",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_mailutils/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_mailutils/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e1eb2b7b493735784bba46e96626f29fbd0257b804a7bbaf5a1cab38d218955b",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_mailutils/README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0aec2acbab5584635c7ecd8cf699ecefd5a9250875e6e258235f95f53d111fe6",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_telnet",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_telnet/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_telnet/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "72111ba0ff9b7f7b92504bfd6a7195e4fde85512472fd990de08eeaae276b7e6",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_telnet/README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5ea0bdb894e33ec8f4d191eda3b244c3b771e80b874b570ae62c4075132b67a9",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_curl",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_curl/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_curl/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a6f7406dd62f276d389a7836600d70e7ed84446751862d54b8bb13c188c22255",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_curl/README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "abdfef4cd19da0b77f82a758e5e20b535bd65aa2ff17b4b0a480ce1d8ed3c45b",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_iotop",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_iotop/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_iotop/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b98b2159356ecedf6ba65d5ae0d7a88940114bc47a838d04886043c2907d5566",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_iotop/README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8c51e639e5e1df5f780816591cc9a47abc1924b219c0629e5f66942e3696dc62",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_mc",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_mc/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_mc/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4b30013a16c603802198c32c837ee83c70a4010e80f5b6a5b4606c4e85a29578",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_mc/README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "edca0e2b1874277b743060df388e2f7e386c28b804df9bf2b24f555386650856",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_locale",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_locale/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_locale/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2be88de0a7dd979c407e49ad98a6ef33981c7edb275e24eb669201aa35754ee3",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_locale/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_locale/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "418582b519da81276d30a8ae3bcb86d6e067a67339e362b593892caa6126c95c",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_locale/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_locale/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "40339af7d1194ebb1f2e825fe48a554ddceaeea1f59f588ab65057f6d7265cf8",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_locale/vars",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_locale/vars/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "076c08aad24968e78d55c42b7241e1dde05c195723650a1b98f3450e769cf0c3",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_locale/README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2ed5103a82b188756e25ae729e3b13bc9170079d990ef526f8b294999804fc20",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_hostname",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_hostname/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_hostname/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "df33a4d0dd986c42b3e36b3f63b3d3401c0504a5b7e44164c68228cdb396a317",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_hostname/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_hostname/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "de84334439b6f4d94a9fc89909ccbe80e9d143085c311ce2792f37ab2cc45cf9",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_hostname/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_hostname/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d76b197cae657717630b0f108a2911c462d5a618da2fe45b990b1d86d05a6270",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_hostname/README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e0006e9de2af3b9dc5442ff7da75e044ab0e3a6525c96434c627a6474fd03b14",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_postfix",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_postfix/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_postfix/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d2934b1f00ba0e7a5b250e55ea3b5bf5fcf788c731ac06a7b06a57206c157174",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_postfix/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_postfix/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0f8f4d10fdbfc764eeb6df55ed973153a85ce5b4b89c8f7f2a32b8e8fcae04b2",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_postfix/templates",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_postfix/templates/main.cf.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c932c5bfe3c396f6b6751df2e2dfbaf616e7f5bde9180ffceb0b943f5f32d379",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_postfix/templates/mailname.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "de9f9f379886b4a637b388dd2fc8d70ea02a12c827f36e4c3792db636a71a5df",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_postfix/templates/generic.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b5fe9dc321922b5872eeb7b9ad7b6a416ccae84da4f22f84102a3cf2d272c67d",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_postfix/templates/aliases.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "972c5f55257544e3e5c1bf88a4b9c00240c04fdcd202caf99f5238ab4b532e49",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_postfix/README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3329ff9986f2c322171ea8383ed63822281d8c6cb12e45e3ac13ff4e5179f630",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_unzip",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_unzip/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_unzip/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6f52a98a9a830933f6675a21e40a414e4feb0d91f86ed2087cac849ddd381533",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_unzip/README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d7def204791a9a1391a62fabae95f8f698421970054744321577c4b94c7e6517",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_wget",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_wget/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_wget/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "72b1c5cce09878270f96220422c5c636207158c7a7f8d47f529278758ca554c5",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_wget/README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b4cd38c7a61f1dfda0a1e2311d27f1d4ba02a7231ff2cb043b970e476969d49b",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_hosts",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_hosts/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_hosts/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ff19fe92c483ffe142e851201e8e5bcfb180364f69aeb162d1e65149e9a27c16",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_hosts/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_hosts/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "840b2b4e7bf05d8921a9d0bb81b3849e100e73b92120cc906f6dc0770d43f1a0",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_hosts/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_hosts/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0d0a37bddc94840204c43187b1cd61daaf07cefbcab2ec74509ec39e88325f40",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_hosts/README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3c65a18204e62e684e1c7e51f9dd8c5dc532bafe33ebc9929cca080c68d1216b",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_ping",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_ping/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_ping/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8354cdd3c8a1eaa22ba9bca033ddabc1633b2b86cece41f46dec8d69709f970a",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_ping/README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9db2d2de4a5f8a883c38545a186edf7a43b13369707b8fa5a78e89002abd51f2",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_apt",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_apt/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_apt/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "fcf09bcf170b1da92221f34dacb455224c3dd4f3bbb9d1286c8b6808cbed598f",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_apt/README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2e6b16401199a8940969e14d6e2e23286c78b1dc7f19eb779400a29bafbbec60",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_htop",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_htop/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_htop/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b7dc90268e253b068dc98803b0e619f8d099b1cf2eb25236883afe2b0932b02d",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_htop/README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "28782c1cdb9715803638826d6d60499666321a9d49e85f444383f3f3fcb8dc91",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_cronic",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_cronic/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_cronic/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "34b73cd1380c91d9cd4d240f01a38853cab2c04ee2dd06be8e208b2bfeba64f6",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_cronic/README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8cad32070d338843faf7b4c07a8cb85551304ea117eef40ddc7ddd186bea3035",
+   "format": 1
+  },
+  {
+   "name": "roles/README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5700cbad86aafc9b9a298d5c3ba549c05d41b7e3142256c13366f7d06b929b62",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_timezone",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_timezone/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_timezone/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cf11a71f34097a8cf0927ed65e055839099122a62cd8b5f5a4c00cd9c841d2d6",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_timezone/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_timezone/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "faf998aa4c69b32dda84e918c692c311a30ab0d52f08d797cd59d93ca7d5bf79",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_timezone/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_timezone/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "fb44ba7e3da7d116f1154c84a468a6b4a2e10a40182cb11f47c331ad202bd7b5",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_timezone/README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e7535abe31acb2c48179728ed9566fe920fe43ba21e31502e50adc1b5e45c434",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_docker",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_docker/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_docker/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "68c26066488142dd333655297b1a6c6cf5d857bdf87d61b634b03a45462447b2",
+   "format": 1
+  },
+  {
+   "name": "roles/softing_linux_software_docker/README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8a8d567a737cf791c2b3fcc4dc1f0d6ffbd6d1623b18340c3b33d68f8a2145c9",
+   "format": 1
+  },
+  {
+   "name": "LICENSE",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+   "format": 1
+  },
+  {
+   "name": "README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ea51650ae746ddf33c060dee661083793e8b347b390b51631d9066426da19dfa",
+   "format": 1
+  }
+ ],
+ "format": 1
+}

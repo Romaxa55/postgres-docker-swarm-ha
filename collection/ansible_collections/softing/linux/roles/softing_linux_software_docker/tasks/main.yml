@@ -1,0 +1,23 @@
+---
+
+- name: "Linux::software::docker | Install Docker GPG key"
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: "Linux::software::docker | Install Docker APT repository"
+  ansible.builtin.apt_repository:
+    repo: deb https://download.docker.com/linux/{{ ansible_distribution | lower }}  {{ ansible_distribution_release | lower }} stable
+
+- name: "Linux::software::docker | Install Docker CE packages"
+  apt:
+    pkg:
+      - python3-pip
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-compose-plugin
+
+- name: "Linux::software::docker | Install python package"
+  pip:
+    name: docker

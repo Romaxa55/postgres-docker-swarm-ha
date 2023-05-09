@@ -1,0 +1,6 @@
+---
+
+_linux_locale_failsafe_locales:
+  - en_US.UTF-8
+
+_linux_locale_installable_locales: "{{ _linux_locale_failsafe_locales + linux_locale_locales | unique }}"

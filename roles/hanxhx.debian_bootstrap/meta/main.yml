@@ -1,0 +1,33 @@
+---
+
+galaxy_info:
+  role_name: debian_bootstrap
+  namespace: HanXHX
+  author: Emilien Mantel
+  description: Normalize and prepare a Debian/Devuan/Ubuntu Linux server
+  company:
+  license: GPLv2
+  min_ansible_version: 2.11
+  platforms:
+    - name: Debian
+      versions:
+        - stretch
+        - buster
+        - bullseye
+    - name: Devuan
+      versions:
+        - ascii
+    - name: Ubuntu
+      versions:
+        - bionic
+  galaxy_tags:
+    - networking
+    - packaging
+    - system
+    - debian
+    - apt
+    - alternatives
+    - editor
+    - ntp
+
+dependencies: []

@@ -1,0 +1,6 @@
+---
+
+- name: "Linux::software | Install unzip package"
+  package: name={{ item }} state=latest
+  with_items:
+    - unzip

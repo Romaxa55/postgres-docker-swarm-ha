@@ -1,0 +1,14 @@
+---
+
+- name: "Linux::software::mc | Install MC GPG key"
+  apt_key:
+    url: http://www.tataranovich.com/debian/gpg
+    state: present
+
+- name: "Linux::software::mc | Install MC APT repository"
+  apt_repository:
+    repo: deb http://www.tataranovich.com/debian {{ ansible_distribution_release }} main
+    state: present
+
+- name: "Linux::software::mc | Install MC packages"
+  package: name=mc state=latest force=yes

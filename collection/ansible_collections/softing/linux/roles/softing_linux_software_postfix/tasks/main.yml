@@ -1,0 +1,44 @@
+---
+
+- fail: 
+    msg: "Linux::software::postfix | Variable '{{ item }}' is not defined"
+  when: item not in vars
+  with_items: "{{ required_vars }}"
+
+- name: "Linux::software::postfix | Setup mailer type"
+  debconf: name=postfix question="postfix/main_mailer_type" value="'Satellite system'" vtype="string"
+
+- name: "Linux::software::postfix | Setup mailname"
+  debconf: name=postfix question="postfix/mailname" value="{{ ansible_fqdn }}" vtype="string"
+
+- name: "Linux::software::postfix | Setup relayhost"
+  debconf: name=postfix question="postfix/relayhost" value="{{ linux_software_postfix_relay_server }}" vtype="string"
+
+- name: "Linux::software::postfix | Install postfix"
+  apt: name=postfix state=present
+
+- name: "Linux::software::postfix | Remove canonical-redirect"
+  file:
+    state: absent
+    path: /etc/postfix/canonical-redirect
+
+- name: "Linux::software::postfix | Setup mailname"
+  template: src=mailname.j2 dest=/etc/mailname
+
+- name: "Linux::software::postfix | Setup generic"
+  template: src=generic.j2 dest=/etc/postfix/generic
+
+- name: "Linux::software::postfix | Postmap generic"
+  command: postmap /etc/postfix/generic
+
+- name: "Linux::software::postfix | Setup aliases"
+  template: src=aliases.j2 dest=/etc/aliases
+
+- name: "Linux::software::postfix | Run newaliases"
+  command: newaliases
+
+- name: "Linux::software::postfix | Create main.cf"
+  template: src=main.cf.j2 dest=/etc/postfix/main.cf
+
+- name: "Linux::software::postfix | Start Postfix"
+  service: name=postfix state=restarted enabled=yes

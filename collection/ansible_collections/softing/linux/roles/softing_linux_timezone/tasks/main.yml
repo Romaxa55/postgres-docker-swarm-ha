@@ -1,0 +1,9 @@
+---
+
+- name: "Linux::Timezone | Install software"
+  package: name={{ item }} state=present
+  with_items:
+    - tzdata
+
+- name: "Linux::Timezone | Install linux timezone {{ linux_timezone_timezone }}"
+  timezone: name={{ linux_timezone_timezone }}

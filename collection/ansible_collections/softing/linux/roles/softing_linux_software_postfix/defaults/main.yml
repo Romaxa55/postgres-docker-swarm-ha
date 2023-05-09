@@ -1,0 +1,9 @@
+---
+
+required_vars:
+  - linux_software_postfix_relay_user
+  - linux_software_postfix_relay_password
+  - linux_software_postfix_default_email
+
+linux_software_postfix_relay_server: 'smtp.mailgun.org'
+linux_software_postfix_relay_port: '2525'

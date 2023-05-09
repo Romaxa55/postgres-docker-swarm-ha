@@ -1,0 +1,6 @@
+---
+
+- name: "Linux::software | Install htop package"
+  package: name={{ item }} state=latest
+  with_items:
+    - htop

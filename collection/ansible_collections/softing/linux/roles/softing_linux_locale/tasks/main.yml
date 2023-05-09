@@ -1,0 +1,15 @@
+---
+
+- name: "Linux::Locale | Install software"
+  package: name={{ item }} state=present
+  with_items:
+    - locales
+
+- name: "Linux::Locale | Install linux locales"
+  locale_gen: name={{ item }} state=present
+  with_items: "{{ _linux_locale_installable_locales }}"
+
+- name: "Linux::Locale | Run update-locale"
+  command: update-locale LANG="{{ item }}"
+  with_items: "{{ _linux_locale_installable_locales }}"
+  changed_when: false

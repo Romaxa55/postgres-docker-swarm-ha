@@ -1,0 +1,6 @@
+---
+
+- name: "Linux::software | Install wget package"
+  package: name={{ item }} state=latest
+  with_items:
+    - wget

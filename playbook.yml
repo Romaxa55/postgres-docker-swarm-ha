@@ -1,0 +1,14 @@
+- name: "Provision Docker Swarm Cluster"
+  hosts: all
+  roles:
+    - role: softing.linux.softing_linux_hosts
+      vars:
+        linux_hosts_hosts:
+          - address: "127.0.0.1"
+            hostnames: "{{ inventory_hostname }}"
+    - role: HanXHX.debian_bootstrap
+      vars:
+        dbs_hostname: "{{ inventory_hostname }}"
+        dbs_users:
+          - devops
+    - role: atosatto.docker-swarm

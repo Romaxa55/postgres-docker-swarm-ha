@@ -1,0 +1,23 @@
+all:
+  children:
+    docker_engine:
+      hosts:
+        swarm-01:
+          ansible_host: 51.195.211.39
+          ansible_user: root
+        swarm-02:
+          ansible_host: 198.244.241.198
+          ansible_user: root
+        swarm-03:
+          ansible_host: 51.89.206.16
+          ansible_user: root
+    docker_swarm_manager:
+      hosts:
+        swarm-01:
+          swarm_labels: deploy
+    docker_swarm_worker:
+      hosts:
+        swarm-02:
+          swarm_labels: '["libvirt", "docker"]'
+        swarm-03:
+          swarm_labels: '["libvirt", "docker"]'

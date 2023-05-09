@@ -1,0 +1,32 @@
+{
+ "collection_info": {
+  "namespace": "softing",
+  "name": "linux",
+  "version": "1.0.5",
+  "authors": [
+   "Illia Skorik <ilya.skorik@gmail.com>"
+  ],
+  "readme": "README.md",
+  "tags": [
+   "linux"
+  ],
+  "description": "Different roles for atomically configuring a linux host",
+  "license": [
+   "GPL-3.0-or-later"
+  ],
+  "license_file": null,
+  "dependencies": {},
+  "repository": "https://github.com/softing/ansible-linux",
+  "documentation": "https://github.com/softing/ansible-linux",
+  "homepage": "https://github.com/softing/ansible-linux",
+  "issues": "https://github.com/softing/ansible-linux/issues"
+ },
+ "file_manifest_file": {
+  "name": "FILES.json",
+  "ftype": "file",
+  "chksum_type": "sha256",
+  "chksum_sha256": "d413fd9485976d419cc2828c7e02f872fb0c8e49f0ab82b76b0ec0fd450604c2",
+  "format": 1
+ },
+ "format": 1
+}

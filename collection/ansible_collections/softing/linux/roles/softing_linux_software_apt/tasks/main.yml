@@ -1,0 +1,8 @@
+---
+
+- name: "Linux::software | Install apt support packages"
+  package: name={{ item }} state=latest
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - software-properties-common

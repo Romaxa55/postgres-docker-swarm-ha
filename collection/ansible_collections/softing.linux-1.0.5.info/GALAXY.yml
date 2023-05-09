@@ -1,0 +1,8 @@
+download_url: https://galaxy.ansible.com/download/softing-linux-1.0.5.tar.gz
+format_version: 1.0.0
+name: linux
+namespace: softing
+server: https://galaxy.ansible.com/api/
+signatures: []
+version: 1.0.5
+version_url: https://galaxy.ansible.com/api/v2/collections/softing/linux/versions/1.0.5/
