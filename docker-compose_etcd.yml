@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  etcd: &etcd
+  etcd:
     image: docker.io/bitnami/etcd:3
     hostname: etcd{{.Task.Slot}}
     environment:
@@ -20,8 +20,6 @@ services:
         max_replicas_per_node: 1
     networks:
       - etcd-network
-    volumes:
-      - etcd-data:/bitnami/etcd/data
 #    healthcheck: &healthcheck
 #      test: ["CMD", "etcdctl", "--endpoints=http://127.0.0.1:2379", "endpoint", "health"]
 #      interval: 30s
@@ -41,7 +39,3 @@ services:
 networks:
   etcd-network:
     driver: overlay
-
-volumes:
-  etcd-data:
-    driver: local
