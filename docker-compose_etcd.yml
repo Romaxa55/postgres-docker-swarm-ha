@@ -18,6 +18,8 @@ services:
       placement:
         constraints:
           - node.hostname == swarm-01
+    networks:
+      - etcd-network
 #    healthcheck: &healthcheck
 #      test: ["CMD", "etcdctl", "--endpoints=http://127.0.0.1:2379", "endpoint", "health"]
 #      interval: 30s
@@ -42,6 +44,8 @@ services:
       placement:
         constraints:
           - node.hostname == swarm-02
+    networks:
+      - etcd-network
 #    healthcheck: &healthcheck
 #      test: ["CMD", "etcdctl", "--endpoints=http://127.0.0.1:2379", "endpoint", "health"]
 #      interval: 30s
@@ -65,9 +69,21 @@ services:
       placement:
         constraints:
           - node.hostname == swarm-03
+    networks:
+      - etcd-network
+
 #    healthcheck: &healthcheck
 #      test: ["CMD", "etcdctl", "--endpoints=http://127.0.0.1:2379", "endpoint", "health"]
 #      interval: 30s
 #      timeout: 10s
 #      retries: 3
 
+debug:
+    image: alpine
+    command: sh -c "sleep 1d" # Запустите контейнер на 1 день, затем он будет остановлен.
+    networks:
+      - etcd-network
+
+networks:
+  etcd-network:
+    driver: overlay
