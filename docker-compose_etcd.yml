@@ -50,11 +50,11 @@ services:
       - POSTGRESQL_PASSWORD=custompassword
       - POSTGRESQL_DATABASE=customdatabase
       - REPMGR_PASSWORD=repmgrpassword
-      - REPMGR_PRIMARY_HOST=pg-0
+      - REPMGR_PRIMARY_HOST=pg-1
       - REPMGR_PRIMARY_PORT=5432
       - REPMGR_PARTNER_NODES=pg-1,pg-2,pg3:5432
-      - REPMGR_NODE_NAME=pg-1
-      - REPMGR_NODE_NETWORK_NAME=pg-1
+      - REPMGR_NODE_NAME=pg-2
+      - REPMGR_NODE_NETWORK_NAME=pg-2
       - REPMGR_PORT_NUMBER=5432
     deploy: &swarm-02
       placement:
@@ -115,9 +115,27 @@ services:
     deploy:
       <<: *swarm-03
 
-volumes:
-  etcd-data:
-    driver: local
+  pgpool:
+    image: docker.io/bitnami/pgpool
+    ports:
+      - 5432:5432
+    environment:
+      - PGPOOL_BACKEND_NODES=0:pg-1:5432,1:pg-2,2:pg-3:5432
+      - PGPOOL_SR_CHECK_USER=repmgr
+      - PGPOOL_SR_CHECK_PASSWORD=repmgrpassword
+      - PGPOOL_ENABLE_LDAP=no
+      - PGPOOL_POSTGRES_USERNAME=postgres
+      - PGPOOL_POSTGRES_PASSWORD=adminpassword
+      - PGPOOL_ADMIN_USERNAME=admin
+      - PGPOOL_ADMIN_PASSWORD=adminpassword
+      - PGPOOL_ENABLE_LOAD_BALANCING=yes
+      - PGPOOL_POSTGRES_CUSTOM_USERS=customuser
+      - PGPOOL_POSTGRES_CUSTOM_PASSWORDS=custompassword
+    healthcheck:
+      test: ["CMD", "/opt/bitnami/scripts/pgpool/healthcheck.sh"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 networks:
   postgres-network:
