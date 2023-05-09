@@ -4,13 +4,16 @@ all:
       hosts:
         swarm-01:
           ansible_host: 51.195.211.39
-          ansible_user: root
+          ansible_port: 15122
+          ansible_user: devops
         swarm-02:
           ansible_host: 198.244.241.198
-          ansible_user: root
+          ansible_port: 15122
+          ansible_user: devops
         swarm-03:
           ansible_host: 51.89.206.16
-          ansible_user: root
+          ansible_port: 15122
+          ansible_user: devops
     docker_swarm_manager:
       hosts:
         swarm-01:

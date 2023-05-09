@@ -112,6 +112,8 @@ services:
     env_file: .env_postgres
     networks:
       - postgres-network
+    volumes:
+      - some-ghost-data:/var/lib/ghost/content
 
 networks:
   postgres-network:

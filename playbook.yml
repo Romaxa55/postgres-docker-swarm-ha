@@ -1,4 +1,5 @@
 - name: "Provision Docker Swarm Cluster"
+  become: true
   hosts: all
   roles:
     - role: HanXHX.debian_bootstrap
@@ -15,3 +16,4 @@
           - devops
         security_sudoers_passwordless:
           - devops
+    - role: geerlingguy.glusterfs
