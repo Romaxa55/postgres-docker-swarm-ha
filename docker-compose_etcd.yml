@@ -16,7 +16,8 @@ services:
       - ETCD_INITIAL_CLUSTER_STATE=new
     deploy:
       replicas: 3
-      max_replicas_per_node: 1
+      placement:
+        max_replicas_per_node: 1
     networks:
       - etcd-network
     volumes:
