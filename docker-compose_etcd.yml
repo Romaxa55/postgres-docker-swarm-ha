@@ -18,8 +18,8 @@ services:
       placement:
         constraints:
           - node.hostname == swarm-01
-    networks:
-      - postgres-network
+    networks: postgres-network
+
 
   etcd2:
     <<: *etcd
@@ -57,17 +57,10 @@ services:
         constraints:
           - node.hostname == swarm-03
 
-  debug:
-    image: alpine
-    command: sh -c "sleep 1d" # Запустите контейнер на 1 день, затем он будет остановлен.
-    networks:
-      - postgres-network
-    deploy:
-      placement:
-        constraints:
-          - node.hostname == swarm-01
-
-
 volumes:
   etcd-data:
     driver: local
+
+networks:
+  postgres-network:
+    external: true
