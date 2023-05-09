@@ -73,7 +73,7 @@ services:
       placement:
         constraints:
           - node.hostname == swarm-03
-   networks:
+    networks:
       postgres-network:
         aliases:
           - etcd3
