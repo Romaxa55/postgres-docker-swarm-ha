@@ -124,7 +124,7 @@ services:
     ports:
       - 5432:5432
     environment:
-      - PGPOOL_BACKEND_NODES=0:pg-1:5432,1:pg-2,2:pg-3:5432
+      - PGPOOL_BACKEND_NODES=0:pg-1:5432,1:pg-2:5432,2:pg-3:5432
       - PGPOOL_SR_CHECK_USER=repmgr
       - PGPOOL_SR_CHECK_PASSWORD=repmgrpassword
       - PGPOOL_ENABLE_LDAP=no
