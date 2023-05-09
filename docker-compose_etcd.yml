@@ -20,6 +20,8 @@ services:
           - node.hostname == swarm-01
     networks:
       - etcd-network
+    volumes:
+      - etcd-data:/bitnami/etcd/data
 #    healthcheck: &healthcheck
 #      test: ["CMD", "etcdctl", "--endpoints=http://127.0.0.1:2379", "endpoint", "health"]
 #      interval: 30s
@@ -46,6 +48,8 @@ services:
           - node.hostname == swarm-02
     networks:
       - etcd-network
+    volumes:
+      - etcd-data:/bitnami/etcd/data
 #    healthcheck: &healthcheck
 #      test: ["CMD", "etcdctl", "--endpoints=http://127.0.0.1:2379", "endpoint", "health"]
 #      interval: 30s
@@ -71,7 +75,8 @@ services:
           - node.hostname == swarm-03
     networks:
       - etcd-network
-
+    volumes:
+      - etcd-data:/bitnami/etcd/data
 #    healthcheck: &healthcheck
 #      test: ["CMD", "etcdctl", "--endpoints=http://127.0.0.1:2379", "endpoint", "health"]
 #      interval: 30s
@@ -91,3 +96,7 @@ services:
 networks:
   etcd-network:
     driver: overlay
+
+volumes:
+  etcd-data:
+    driver: local
