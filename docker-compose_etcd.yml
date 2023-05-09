@@ -95,8 +95,8 @@ services:
     ports:
       - 5432:5432
     env_file: .env_postgres
-    deploy: &swarm-01
-      replicas: 3
+    deploy:
+      mode: global
     healthcheck:
       test: ["CMD", "/opt/bitnami/scripts/pgpool/healthcheck.sh"]
       interval: 10s
