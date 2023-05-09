@@ -1,6 +1,28 @@
 version: '3.8'
 
 services:
+  pg-1: &pg
+    image: 'bitnami/postgresql-repmgr:latest'
+    networks: [ postgres-network ]
+    volumes:
+      - pg_data:/bitnami/postgresql
+    environment:
+      - POSTGRESQL_POSTGRES_PASSWORD=adminpassword
+      - POSTGRESQL_USERNAME=customuser
+      - POSTGRESQL_PASSWORD=custompassword
+      - POSTGRESQL_DATABASE=customdatabase
+      - REPMGR_PASSWORD=repmgrpassword
+      - REPMGR_PRIMARY_HOST=pg-1
+      - REPMGR_PRIMARY_PORT=5432
+      - REPMGR_PARTNER_NODES=pg-1,pg-2,pg-3:5432
+      - REPMGR_NODE_NAME=pg-1
+      - REPMGR_NODE_NETWORK_NAME=pg-1
+      - REPMGR_PORT_NUMBER=5432
+    deploy: &swarm-01
+      placement:
+        constraints:
+          - node.hostname == swarm-01
+
   etcd1: &etcd
     image: quay.io/coreos/etcd:v3.5.8
     hostname: etcd1
@@ -15,11 +37,29 @@ services:
       - ETCD_INITIAL_CLUSTER=etcd1=http://etcd1:2380,etcd2=http://etcd2:2380,etcd3=http://etcd3:2380
       - ETCD_INITIAL_CLUSTER_STATE=new
     deploy:
-      placement:
-        constraints:
-          - node.hostname == swarm-01
+      <<: *swarm-01
     networks: [ postgres-network ]
 
+  pg-2:
+    <<: *pg
+    volumes:
+      - pg_data:/bitnami/postgresql
+    environment:
+      - POSTGRESQL_POSTGRES_PASSWORD=adminpassword
+      - POSTGRESQL_USERNAME=customuser
+      - POSTGRESQL_PASSWORD=custompassword
+      - POSTGRESQL_DATABASE=customdatabase
+      - REPMGR_PASSWORD=repmgrpassword
+      - REPMGR_PRIMARY_HOST=pg-0
+      - REPMGR_PRIMARY_PORT=5432
+      - REPMGR_PARTNER_NODES=pg-1,pg-2,pg3:5432
+      - REPMGR_NODE_NAME=pg-1
+      - REPMGR_NODE_NETWORK_NAME=pg-1
+      - REPMGR_PORT_NUMBER=5432
+    deploy: &swarm-02
+      placement:
+        constraints:
+          - node.hostname == swarm-02
 
   etcd2:
     <<: *etcd
@@ -35,9 +75,29 @@ services:
       - ETCD_INITIAL_CLUSTER=etcd1=http://etcd1:2380,etcd2=http://etcd2:2380,etcd3=http://etcd3:2380
       - ETCD_INITIAL_CLUSTER_STATE=new
     deploy:
+      <<: *swarm-02
+
+
+  pg-3:
+    <<: *pg
+    volumes:
+      - pg_data:/bitnami/postgresql
+    environment:
+      - POSTGRESQL_POSTGRES_PASSWORD=adminpassword
+      - POSTGRESQL_USERNAME=customuser
+      - POSTGRESQL_PASSWORD=custompassword
+      - POSTGRESQL_DATABASE=customdatabase
+      - REPMGR_PASSWORD=repmgrpassword
+      - REPMGR_PRIMARY_HOST=pg-1
+      - REPMGR_PRIMARY_PORT=5432
+      - REPMGR_PARTNER_NODES=pg-1,pg-2,pg-3:5432
+      - REPMGR_NODE_NAME=pg-3
+      - REPMGR_NODE_NETWORK_NAME=pg-3
+      - REPMGR_PORT_NUMBER=5432
+    deploy: &swarm-03
       placement:
         constraints:
-          - node.hostname == swarm-02
+          - node.hostname == swarm-03
 
   etcd3:
     <<: *etcd
@@ -53,9 +113,7 @@ services:
       - ETCD_INITIAL_CLUSTER=etcd1=http://etcd1:2380,etcd2=http://etcd2:2380,etcd3=http://etcd3:2380
       - ETCD_INITIAL_CLUSTER_STATE=new
     deploy:
-      placement:
-        constraints:
-          - node.hostname == swarm-03
+      <<: *swarm-03
 
 volumes:
   etcd-data:
@@ -64,3 +122,7 @@ volumes:
 networks:
   postgres-network:
     external: true
+
+volumes:
+  pg_data:
+    driver: local

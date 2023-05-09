@@ -20,15 +20,13 @@ git clone https://github.com/Romaxa55/postgres-docker-swarm-ha.git
 3. Create the Docker Swarm overlay networks:
 
 ```bash
-docker network create --driver=overlay --attachable etcd-network
-docker network create --driver=overlay --attachable postgres-network
+docker network create --driver=overlay --attachable --subnet=192.168.0.1/24 postgres-network
 ```
 
 
 4. Deploy the PostgreSQL cluster using Docker Stack:
 
 ```bash
-docker network create --driver overlay --attachable postgres-network
 docker stack deploy --compose-file docker-compose.yml etcd-stack
 
 docker stack deploy -c docker-compose.yml postgres-ha
