@@ -1,76 +1,83 @@
-version: "3.8"
-
-networks:
-    postgres:
+version: '3.8'
 
 services:
-    etcd1: &etcd
-        image: patroni
-        networks: [ postgres ]
-        environment:
-            ETCD_LISTEN_PEER_URLS: http://0.0.0.0:2380
-            ETCD_LISTEN_CLIENT_URLS: http://0.0.0.0:2379
-            ETCD_INITIAL_CLUSTER: etcd1=http://etcd1:2380,etcd2=http://etcd2:2380,etcd3=http://etcd3:2380
-            ETCD_INITIAL_CLUSTER_STATE: new
-            ETCD_INITIAL_CLUSTER_TOKEN: tutorial
-        container_name: etcd1
-        hostname: etcd1
-        command: etcd -name etcd1 -initial-advertise-peer-urls http://etcd1:2380
+  etcd1: &etcd
+    image: docker.io/bitnami/etcd:3
+    hostname: etcd1
+    environment:
+      - ALLOW_NONE_AUTHENTICATION=yes
+      - ETCD_NAME=etcd1
+      - ETCD_INITIAL_ADVERTISE_PEER_URLS=http://etcd1:2380
+      - ETCD_LISTEN_PEER_URLS=http://0.0.0.0:2380
+      - ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379
+      - ETCD_ADVERTISE_CLIENT_URLS=http://etcd1:2379
+      - ETCD_INITIAL_CLUSTER_TOKEN=etcd-cluster
+      - ETCD_INITIAL_CLUSTER=etcd1=http://etcd1:2380,etcd2=http://etcd2:2380,etcd3=http://etcd3:2380
+      - ETCD_INITIAL_CLUSTER_STATE=new
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == swarm-01
+    networks:
+      - etcd-network
+    volumes:
+      - etcd-data:/bitnami/etcd/data
+#    healthcheck: &healthcheck
+#      test: ["CMD", "etcdctl", "--endpoints=http://127.0.0.1:2379", "endpoint", "health"]
+#      interval: 30s
+#      timeout: 10s
+#      retries: 3
 
-    etcd2:
-        <<: *etcd
-        container_name: etcd2
-        hostname: etcd2
-        command: etcd -name etcd2 -initial-advertise-peer-urls http://etcd2:2380
 
-    etcd3:
-        <<: *etcd
-        container_name: etcd3
-        hostname: etcd3
-        command: etcd -name etcd3 -initial-advertise-peer-urls http://etcd3:2380
+  etcd2:
+    <<: *etcd
+    environment:
+      - ALLOW_NONE_AUTHENTICATION=yes
+      - ETCD_NAME=etcd2
+      - ETCD_INITIAL_ADVERTISE_PEER_URLS=http://etcd2:2380
+      - ETCD_LISTEN_PEER_URLS=http://0.0.0.0:2380
+      - ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379
+      - ETCD_ADVERTISE_CLIENT_URLS=http://etcd2:2379
+      - ETCD_INITIAL_CLUSTER_TOKEN=etcd-cluster
+      - ETCD_INITIAL_CLUSTER=etcd1=http://etcd1:2380,etcd2=http://etcd2:2380,etcd3=http://etcd3:2380
+      - ETCD_INITIAL_CLUSTER_STATE=new
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == swarm-02
 
-    haproxy:
-        image: patroni
-        networks: [ postgres ]
-        env_file: patroni.env
-        hostname: haproxy
-        container_name: haproxy
-        ports:
-            - "5000:5000"
-            - "5001:5001"
-        command: haproxy
-        environment: &haproxy_env
-            ETCDCTL_ENDPOINTS: http://etcd1:2379,http://etcd2:2379,http://etcd3:2379
-            PATRONI_ETCD3_HOSTS: "'etcd1:2379','etcd2:2379','etcd3:2379'"
-            PATRONI_SCOPE: postgres
+  etcd3:
+    <<: *etcd
+    environment:
+      - ALLOW_NONE_AUTHENTICATION=yes
+      - ETCD_NAME=etcd3
+      - ETCD_INITIAL_ADVERTISE_PEER_URLS=http://etcd3:2380
+      - ETCD_LISTEN_PEER_URLS=http://0.0.0.0:2380
+      - ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379
+      - ETCD_ADVERTISE_CLIENT_URLS=http://etcd3:2379
+      - ETCD_INITIAL_CLUSTER_TOKEN=etcd-cluster
+      - ETCD_INITIAL_CLUSTER=etcd1=http://etcd1:2380,etcd2=http://etcd2:2380,etcd3=http://etcd3:2380
+      - ETCD_INITIAL_CLUSTER_STATE=new
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == swarm-03
 
-    patroni1:
-        image: patroni
-        networks: [ postgres ]
-        env_file: patroni.env
-        hostname: patroni1
-        container_name: patroni1
-        environment:
-            <<: *haproxy_env
-            PATRONI_NAME: patroni1
 
-    patroni2:
-        image: patroni
-        networks: [ postgres ]
-        env_file: patroni.env
-        hostname: patroni2
-        container_name: patroni2
-        environment:
-            <<: *haproxy_env
-            PATRONI_NAME: patroni2
+  debug:
+    image: alpine
+    command: sh -c "sleep 1d" # Запустите контейнер на 1 день, затем он будет остановлен.
+    networks:
+      - etcd-network
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == swarm-01
 
-    patroni3:
-        image: patroni
-        networks: [ postgres ]
-        env_file: patroni.env
-        hostname: patroni3
-        container_name: patroni3
-        environment:
-            <<: *haproxy_env
-            PATRONI_NAME: patroni3
+networks:
+  etcd-network:
+    driver: overlay
 
+volumes:
+  etcd-data:
+    driver: local
