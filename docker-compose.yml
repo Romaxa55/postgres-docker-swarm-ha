@@ -105,7 +105,6 @@ services:
 
   ghost:
     image: ghcr.io/romaxa55/ghost-cms-in-docker:master
-    restart: always
     deploy:
       mode: global
     ports:
