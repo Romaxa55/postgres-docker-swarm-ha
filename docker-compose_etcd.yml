@@ -38,17 +38,8 @@ services:
     volumes:
       - pg_data:/bitnami/postgresql
     environment:
-      - POSTGRESQL_POSTGRES_PASSWORD=adminpassword
-      - POSTGRESQL_USERNAME=customuser
-      - POSTGRESQL_PASSWORD=custompassword
-      - POSTGRESQL_DATABASE=customdatabase
-      - REPMGR_PASSWORD=repmgrpassword
-      - REPMGR_PRIMARY_HOST=pg-1
-      - REPMGR_PRIMARY_PORT=5432
-      - REPMGR_PARTNER_NODES=pg-1,pg-2,pg3:5432
       - REPMGR_NODE_NAME=pg-2
       - REPMGR_NODE_NETWORK_NAME=pg-2
-      - REPMGR_PORT_NUMBER=5432
     deploy: &swarm-02
       placement:
         constraints:
@@ -76,17 +67,8 @@ services:
     volumes:
       - pg_data:/bitnami/postgresql
     environment:
-      - POSTGRESQL_POSTGRES_PASSWORD=adminpassword
-      - POSTGRESQL_USERNAME=customuser
-      - POSTGRESQL_PASSWORD=custompassword
-      - POSTGRESQL_DATABASE=customdatabase
-      - REPMGR_PASSWORD=repmgrpassword
-      - REPMGR_PRIMARY_HOST=pg-1
-      - REPMGR_PRIMARY_PORT=5432
-      - REPMGR_PARTNER_NODES=pg-1,pg-2,pg-3:5432
       - REPMGR_NODE_NAME=pg-3
       - REPMGR_NODE_NETWORK_NAME=pg-3
-      - REPMGR_PORT_NUMBER=5432
     deploy: &swarm-03
       placement:
         constraints:
