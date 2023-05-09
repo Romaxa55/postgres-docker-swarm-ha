@@ -1,7 +1,7 @@
 version: "3.8"
 
 networks:
-    demo:
+    postgres:
 
 services:
     etcd1: &etcd
@@ -73,3 +73,4 @@ services:
         environment:
             <<: *haproxy_env
             PATRONI_NAME: patroni3
+
