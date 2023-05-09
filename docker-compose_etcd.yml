@@ -85,5 +85,5 @@ services:
 
 networks:
   postgres-network:
-    external: true
+    external: false
     attachable: true
