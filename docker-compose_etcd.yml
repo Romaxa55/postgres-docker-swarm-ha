@@ -78,7 +78,7 @@ services:
 #      timeout: 10s
 #      retries: 3
 
-debug:
+  debug:
     image: alpine
     command: sh -c "sleep 1d" # Запустите контейнер на 1 день, затем он будет остановлен.
     networks:
