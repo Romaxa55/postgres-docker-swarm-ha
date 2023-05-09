@@ -8,6 +8,7 @@ services:
       - postgres-network
     volumes:
       - pg_data:/bitnami/postgresql
+    env_file: .env
     deploy: &swarm-01
       placement:
         constraints:
