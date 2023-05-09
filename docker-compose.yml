@@ -104,7 +104,7 @@ services:
       - postgres-network
 
   ghost:
-    image: ghost:5.47.0
+    image: ghcr.io/romaxa55/ghost-cms-in-docker:master
     deploy:
       replicas: 1
     ports:
