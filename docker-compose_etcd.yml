@@ -3,7 +3,6 @@ version: '3.8'
 services:
   etcd1:
     image: docker.io/bitnami/etcd:3
-    hostname: etcd1
     environment:
       - ALLOW_NONE_AUTHENTICATION=yes
       - ETCD_NAME=etcd1
@@ -29,7 +28,6 @@ services:
 
   etcd2:
     image: docker.io/bitnami/etcd:3
-    hostname: etcd2
     environment:
       - ALLOW_NONE_AUTHENTICATION=yes
       - ETCD_NAME=etcd2
@@ -54,7 +52,6 @@ services:
 
   etcd3:
     image: docker.io/bitnami/etcd:3
-    hostname: etcd3
     environment:
       - ALLOW_NONE_AUTHENTICATION=yes
       - ETCD_NAME=etcd3
@@ -80,3 +77,4 @@ services:
 networks:
   postgres-network:
     external: true
+    attachable: true
