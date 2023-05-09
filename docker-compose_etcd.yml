@@ -18,15 +18,11 @@ services:
       placement:
         constraints:
           - node.hostname == swarm-01
-    networks:
-      postgres-network:
-        aliases:
-          - etcd1
-    healthcheck: &healthcheck
-      test: ["CMD", "etcdctl", "--endpoints=http://127.0.0.1:2379", "endpoint", "health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+#    healthcheck: &healthcheck
+#      test: ["CMD", "etcdctl", "--endpoints=http://127.0.0.1:2379", "endpoint", "health"]
+#      interval: 30s
+#      timeout: 10s
+#      retries: 3
 
 
   etcd2:
@@ -46,15 +42,11 @@ services:
       placement:
         constraints:
           - node.hostname == swarm-02
-    networks:
-      postgres-network:
-        aliases:
-          - etcd2
-    healthcheck: &healthcheck
-      test: ["CMD", "etcdctl", "--endpoints=http://127.0.0.1:2379", "endpoint", "health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+#    healthcheck: &healthcheck
+#      test: ["CMD", "etcdctl", "--endpoints=http://127.0.0.1:2379", "endpoint", "health"]
+#      interval: 30s
+#      timeout: 10s
+#      retries: 3
 
   etcd3:
     image: docker.io/bitnami/etcd:3
@@ -73,17 +65,9 @@ services:
       placement:
         constraints:
           - node.hostname == swarm-03
-    networks:
-      postgres-network:
-        aliases:
-          - etcd3
-    healthcheck: &healthcheck
-      test: ["CMD", "etcdctl", "--endpoints=http://127.0.0.1:2379", "endpoint", "health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+#    healthcheck: &healthcheck
+#      test: ["CMD", "etcdctl", "--endpoints=http://127.0.0.1:2379", "endpoint", "health"]
+#      interval: 30s
+#      timeout: 10s
+#      retries: 3
 
-networks:
-  postgres-network:
-    external: false
-    attachable: true
