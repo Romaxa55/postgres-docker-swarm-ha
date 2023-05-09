@@ -1,56 +1,91 @@
 ---
+- name: Create 'devops' group if not exists
+  group:
+    name: devops
+    state: present
+  register: devops_group
+  ignore_errors: yes
+  tags:
+    - add_user
 
-- name: GROUP | Add groups to the system
-  ansible.builtin.group:
-    name: "{{ item.name }}"
-    system: "{{ item.system | default('no') }}"
-  loop: "{{ dbs_groups }}"
-  when: item.state is not defined or item.state == 'present'
+- name: Check if 'devops' group creation was successful or already exists
+  assert:
+    that:
+      - "devops_group is changed or not devops_group.failed"
+    success_msg: "'devops' group has been created successfully or already exists."
+    fail_msg: "Failed to create 'devops' group. Please check the logs."
+  tags:
+    - add_user
 
-- name: USER | Add users to the system
-  ansible.builtin.user:
-    name: "{{ item.name }}"
-    shell: "{{ item.shell | default(omit) }}"
-    comment: "{{ item.comment | default('') }}"
-    groups: "{{ item.groups | default('') }}"
-    home: "{{ item.home | default(omit) }}"
-    createhome: "{{ item.createhome | default('yes') }}"
-    system: "{{ item.system | default('no') }}"
-    state: "{{ item.state | default('present') }}"
-    password: "{% if item.password is defined %}{{ item.password }}{% elif item.clear_password is defined%}{{ item.clear_password | password_hash('sha512') }}{% else %}{{ omit }}{% endif %}"
-    update_password: "{{ item.update_password | default(omit) }}"
-  with_items: "{{ dbs_users }}"
+- name: Check if sudo is already installed
+  command:
+    cmd: /usr/bin/sudo --version
+    creates: /usr/bin/sudo
+  register: sudo_check
+  ignore_errors: yes
+  tags:
+    - add_user
 
-- name: GROUP | Delete groups to the system
-  ansible.builtin.group:
-    name: "{{ item.name }}"
-    state: absent
-  with_items: "{{ dbs_groups }}"
-  when: item.state is defined and item.state == 'absent'
+- name: Install sudo if not already installed
+  ansible.builtin.apt:
+    name: sudo
+    state: present
+    update_cache: yes
+  when: sudo_check is failed
+  tags:
+    - add_user
 
-- name: USER | Add to group
-  ansible.builtin.user:
-    name: "{{ item.name }}"
-    group: "{{ item.group }}"
-  with_items: "{{ dbs_users }}"
-  when: >
-    item.group is defined and
-    (item.state is not defined or item.state == 'present')
+- name: Check if sudoers file for devops group already exists
+  ansible.builtin.stat:
+    path: /etc/sudoers.d/devops_nopasswd
+  register: devops_sudoers
+  tags:
+    - add_user
 
-- name: AUTHORIZED_KEY | Install SSH public key to system users
-  ansible.posix.authorized_key:
-    user: "{{ item.0.name }}"
-    key: "{{ item.1 }}"
-  with_subelements:
-    - "{{ dbs_users }}"
-    - ssh_keys
-    - flags:
-      skip_missing: true
-  when: item.0.state is not defined or item.0.state == 'present'
-
-- name: TEMPLATE | Create sudoers file
-  ansible.builtin.template:
-    src: etc/sudoers.d/ansible.j2
-    dest: /etc/sudoers.d/ansible
+- name: Sudo without password for devops group
+  copy:
+    content: '%devops ALL=(ALL:ALL) NOPASSWD:ALL'
+    dest: /etc/sudoers.d/devops_nopasswd
     mode: 0440
-    validate: 'visudo -cf %s'
+  when: not devops_sudoers.stat.exists
+  tags:
+    - add_user
+
+- name: Ensure group "docker" exists with correct gid
+  ansible.builtin.group:
+    name: docker
+    state: present
+    gid: 1750
+  tags:
+    - add_user
+
+- name: Add the user 'devops' and add it to 'sudo, docker'
+  user:
+    name: devops
+    groups: sudo, docker, devops
+    append: yes
+    state: present
+    shell: /bin/bash
+    createhome: yes
+  tags:
+    - add_user
+
+- name: Check if local private key exists
+  ansible.builtin.stat:
+    path: "~/.ssh/id_rsa"
+  register: local_private_key
+
+- name: Generate new SSH key pair if it does not exist
+  ansible.builtin.openssl_privatekey:
+    path: "~/.ssh/id_rsa"
+    type: RSA
+    size: 2048
+  when: not local_private_key.stat.exists
+
+- name: Add local public key to devops user's authorized_keys
+  ansible.builtin.authorized_key:
+    user: devops
+    state: present
+    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+  tags:
+    - add_user

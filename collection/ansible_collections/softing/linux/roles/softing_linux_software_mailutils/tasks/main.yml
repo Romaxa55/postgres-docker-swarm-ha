@@ -1,6 +1,0 @@
----
-
-- name: "Linux::software | Install mailutils package"
-  package: name={{ item }} state=latest
-  with_items:
-    - mailutils

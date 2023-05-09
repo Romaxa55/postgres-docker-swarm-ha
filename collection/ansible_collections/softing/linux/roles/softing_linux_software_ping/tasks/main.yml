@@ -1,6 +1,0 @@
----
-
-- name: "Linux::software | Install ping package"
-  package: name={{ item }} state=latest
-  with_items:
-    - iputils-ping
