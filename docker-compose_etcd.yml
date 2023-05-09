@@ -18,7 +18,7 @@ services:
       placement:
         constraints:
           - node.hostname == swarm-01
-    networks: postgres-network
+    networks: [ postgres-network ]
 
 
   etcd2:
