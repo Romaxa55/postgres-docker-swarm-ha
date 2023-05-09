@@ -94,18 +94,7 @@ services:
     image: docker.io/bitnami/pgpool
     ports:
       - 5432:5432
-    environment:
-      - PGPOOL_BACKEND_NODES=0:pg-1:5432,1:pg-2:5432,2:pg-3:5432
-      - PGPOOL_SR_CHECK_USER=repmgr
-      - PGPOOL_SR_CHECK_PASSWORD=repmgrpassword
-      - PGPOOL_ENABLE_LDAP=no
-      - PGPOOL_POSTGRES_USERNAME=postgres
-      - PGPOOL_POSTGRES_PASSWORD=adminpassword
-      - PGPOOL_ADMIN_USERNAME=admin
-      - PGPOOL_ADMIN_PASSWORD=adminpassword
-      - PGPOOL_ENABLE_LOAD_BALANCING=yes
-      - PGPOOL_POSTGRES_CUSTOM_USERS=customuser
-      - PGPOOL_POSTGRES_CUSTOM_PASSWORDS=custompassword
+    env_file: .env_postgres
     healthcheck:
       test: ["CMD", "/opt/bitnami/scripts/pgpool/healthcheck.sh"]
       interval: 10s
@@ -121,3 +110,4 @@ networks:
 volumes:
   pg_data:
     driver: local
+
