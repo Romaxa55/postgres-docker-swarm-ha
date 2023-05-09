@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  etcd:
+    image: ${REGISTRY}:${ETCD_VERSION}
+    deploy:
+      replicas: 3
+      placement:
+        constraints:
+          - node.role == manager
+    ports:
+      - "2379:2379"
+      - "2380:2380"
+    volumes:
+      - ${DATA_DIR}:/etcd-data
+    command:
+      - /usr/local/bin/etcd
+      - --data-dir=/etcd-data
+      - --name={{.Node.Hostname}}
+      - --initial-advertise-peer-urls=http://{{.Node.Hostname}}:2380
+      - --listen-peer-urls=http://0.0.0.0:2380
+      - --advertise-client-urls=http://{{.Node.Hostname}}:2379
+      - --listen-client-urls=http://0.0.0.0:2379
+      - --initial-cluster=${CLUSTER}
+      - --initial-cluster-state=${CLUSTER_STATE}
+      - --initial-cluster-token=${TOKEN}
+
+networks:
+  default:
+    external:
+      name: my-net
