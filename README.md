@@ -28,8 +28,7 @@ docker network create --driver=overlay --attachable postgres-network
 4. Deploy the PostgreSQL cluster using Docker Stack:
 
 ```bash
-docker network create -d overlay postgres-network
-
+docker network create --driver overlay --attachable postgres-network
 docker stack deploy --compose-file docker-compose.yml etcd-stack
 
 docker stack deploy -c docker-compose.yml postgres-ha

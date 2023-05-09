@@ -3,6 +3,7 @@ version: '3.8'
 services:
   etcd1:
     image: docker.io/bitnami/etcd:3
+    hostname: web.example.com
     environment:
       - ALLOW_NONE_AUTHENTICATION=yes
       - ETCD_NAME=etcd1
@@ -18,7 +19,9 @@ services:
         constraints:
           - node.hostname == swarm-01
     networks:
-      - postgres-network
+      postgres-network:
+        aliases:
+          - etcd1
     healthcheck: &healthcheck
       test: ["CMD", "etcdctl", "--endpoints=http://127.0.0.1:2379", "endpoint", "health"]
       interval: 30s
@@ -28,6 +31,7 @@ services:
 
   etcd2:
     image: docker.io/bitnami/etcd:3
+    hostname: web.example.com
     environment:
       - ALLOW_NONE_AUTHENTICATION=yes
       - ETCD_NAME=etcd2
@@ -43,7 +47,9 @@ services:
         constraints:
           - node.hostname == swarm-02
     networks:
-      - postgres-network
+      postgres-network:
+        aliases:
+          - etcd2
     healthcheck: &healthcheck
       test: ["CMD", "etcdctl", "--endpoints=http://127.0.0.1:2379", "endpoint", "health"]
       interval: 30s
@@ -52,6 +58,7 @@ services:
 
   etcd3:
     image: docker.io/bitnami/etcd:3
+    hostname: web.example.com
     environment:
       - ALLOW_NONE_AUTHENTICATION=yes
       - ETCD_NAME=etcd3
@@ -66,8 +73,10 @@ services:
       placement:
         constraints:
           - node.hostname == swarm-03
-    networks:
-      - postgres-network
+   networks:
+      postgres-network:
+        aliases:
+          - etcd3
     healthcheck: &healthcheck
       test: ["CMD", "etcdctl", "--endpoints=http://127.0.0.1:2379", "endpoint", "health"]
       interval: 30s
