@@ -17,7 +17,7 @@ services:
       placement:
         constraints:
           - node.hostname == swarm-01
-    networks: &network
+    networks:
       - postgres-network
 
   etcd2:
@@ -36,7 +36,8 @@ services:
       placement:
         constraints:
           - node.hostname == swarm-02
-     *network
+    networks:
+      - postgres-network
 
   etcd3:
     image: docker.io/bitnami/etcd:3
@@ -54,6 +55,8 @@ services:
       placement:
         constraints:
           - node.hostname == swarm-03
+    networks:
+      - postgres-network
 
 networks:
   postgres-network:
