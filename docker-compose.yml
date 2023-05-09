@@ -105,6 +105,17 @@ services:
     networks:
       - postgres-network
 
+  ghost:
+    image: ghcr.io/romaxa55/ghost-cms-in-docker:master
+    restart: always
+    deploy:
+      mode: global
+    ports:
+      - 8080:2368
+    env_file: .env_postgres
+    networks:
+      - postgres-network
+
 networks:
   postgres-network:
     external: true
