@@ -50,7 +50,7 @@ services:
       test: ["CMD", "etcdctl", "--endpoints=http://127.0.0.1:2379", "endpoint", "health"]
       interval: 30s
       timeout: 10s
-      retries:
+      retries: 3
 
   etcd3:
     image: docker.io/bitnami/etcd:3
@@ -75,7 +75,7 @@ services:
       test: ["CMD", "etcdctl", "--endpoints=http://127.0.0.1:2379", "endpoint", "health"]
       interval: 30s
       timeout: 10s
-      retries:
+      retries: 3
 
 networks:
   postgres-network:
