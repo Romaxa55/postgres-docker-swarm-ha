@@ -113,6 +113,8 @@ services:
       replicas: 6
     environment:
       url: https://swag.industries
+    expose:
+      - 2368
     labels:
         - traefik.enable=true
         - traefik.http.services.justAdummyService.loadbalancer.server.port=2368
