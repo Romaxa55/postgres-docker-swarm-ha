@@ -106,7 +106,7 @@ services:
   ghost:
     image: ghcr.io/romaxa55/ghost-cms-in-docker:master
     deploy:
-      mode: global
+      replicas: 6
     ports:
       - 8080:2368
     env_file: .env_postgres
