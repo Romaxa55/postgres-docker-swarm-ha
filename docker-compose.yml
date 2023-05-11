@@ -145,7 +145,7 @@ services:
       - /mnt/glusterfs/letsencrypt:/letsencrypt
     networks:
       - postgres-network
-   deploy:
+    deploy:
       placement:
         constraints:
           - node.role == manager
