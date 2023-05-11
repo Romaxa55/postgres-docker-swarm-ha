@@ -115,7 +115,7 @@ services:
         - traefik.enable=true
         - traefik.http.routers.ghost.rule=Host(`roshamagin.site`)
         - traefik.http.routers.ghost.entrypoints=web
-        - traefik.http.routers.ghost.middlewares=redirect@docker
+        - traefik.http.routers.ghost.middlewares=redirect-to-https
         - traefik.http.routers.ghost-secured.rule=Host(`roshamagin.site`)
         - traefik.http.routers.ghost-secured.entrypoints=websecure
         - traefik.http.routers.ghost-secured.tls.certresolver=myresolver
@@ -150,6 +150,8 @@ services:
     networks:
       - postgres-network
     deploy:
+      labels:
+        - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
       placement:
         constraints:
           - node.role == manager
