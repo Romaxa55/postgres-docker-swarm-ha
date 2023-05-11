@@ -115,11 +115,11 @@ services:
       url: https://swag.industries
     labels:
       traefik.enable: "true"
-      traefik.http.routers.swag-ghost.rule: "Host(`swag.industries`)"
-      traefik.http.routers.swag-ghost.entrypoints: "https"
-      traefik.http.routers.swag-ghost.service: "ghost"
-      traefik.http.routers.swag-ghost.tls.certresolver: "default"
-      traefik.http.services.swag-ghost.loadbalancer.server.port: "2368"
+      traefik.http.routers.ghost.rule: "Host(`roshamagin.site`)"
+      traefik.http.routers.ghost.entrypoints: "https"
+      traefik.http.routers.ghost.service: "ghost"
+      traefik.http.routers.ghost.tls.certresolver: "default"
+      traefik.http.services.ghost.loadbalancer.server.port: "2368"
     env_file: .env_postgres
     networks:
       - postgres-network
