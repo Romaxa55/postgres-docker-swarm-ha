@@ -113,7 +113,7 @@ services:
     networks:
       - postgres-network
     volumes:
-      - some-ghost-data:/var/lib/ghost/content
+      - ghost-data:/var/lib/ghost/content
 
 networks:
   postgres-network:
@@ -123,3 +123,8 @@ volumes:
   pg_data:
     driver: local
 
+volumes:
+  ghost-data:
+    driver: glusterfs
+    driver_opts:
+      voluri: "localhost:/myvol"
