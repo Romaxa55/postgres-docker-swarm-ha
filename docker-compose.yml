@@ -139,8 +139,7 @@ services:
       - --certificatesresolvers.myresolver.acme.email=info@roshamagin.site
       - --certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json
     environment:
-      - CF_API_EMAIL=$CF_API_EMAIL
-      - CF_API_KEY=$CF_API_KEY
+      - CF_DNS_API_TOKEN=$CF_API_KEY
     ports:
       - 80:80
       - 443:443
