@@ -107,13 +107,48 @@ services:
     image: ghcr.io/romaxa55/ghost-cms-in-docker:master
     deploy:
       replicas: 6
-    ports:
-      - 8080:2368
+    environment:
+      url: https://swag.industries
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.swag-ghost.rule: "Host(`swag.industries`)"
+      traefik.http.routers.swag-ghost.entrypoints: "https"
+      traefik.http.routers.swag-ghost.service: "ghost"
+      traefik.http.routers.swag-ghost.tls.certresolver: "default"
+      traefik.http.services.swag-ghost.loadbalancer.server.port: "2368"
     env_file: .env_postgres
     networks:
       - postgres-network
     volumes:
       - /mnt/glusterfs:/var/lib/ghost/content
+
+  traefik:
+    image: traefik:latest
+    command:
+      - --providers.docker=true
+      - --providers.docker.swarmMode=true
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.web.address=:80
+      - --entrypoints.websecure.address=:443
+      - --certificatesresolvers.myresolver.acme.dnschallenge=true
+      - --certificatesresolvers.myresolver.acme.dnschallenge.provider=cloudflare
+      - --certificatesresolvers.myresolver.acme.email=info@roshamagin.site
+      - --certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json
+    environment:
+      - CF_API_EMAIL=$CF_API_EMAIL
+      - CF_API_KEY=$CF_API_KEY
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /mnt/glusterfs/letsencrypt:/letsencrypt
+    networks:
+      - postgres-network
+    deploy:
+      mode: replicated
+      replicas: 3
+
 
 networks:
   postgres-network:
