@@ -111,16 +111,15 @@ services:
     image: ghcr.io/romaxa55/ghost-cms-in-docker:master
     deploy:
       replicas: 6
-    environment:
-      url: https://swag.industries
-    expose:
-      - 2368
-    labels:
+      labels:
         - traefik.enable=true
-        - traefik.http.services.justAdummyService.loadbalancer.server.port=2368
-        - traefik.http.routers.traefikRouter.rule=Host(`roshamagin.site`)
-        - traefik.http.routers.traefikRouter.service=api@internal
-        - traefik.http.routers.traefikRouter.entrypoints=http
+        - traefik.http.routers.ghost.rule=Host(`roshamagin.site`)
+        - traefik.http.routers.ghost.entrypoints=web
+        - traefik.http.routers.ghost.middlewares=redirect@docker
+        - traefik.http.routers.ghost-secured.rule=Host(`roshamagin.site`)
+        - traefik.http.routers.ghost-secured.entrypoints=websecure
+        - traefik.http.routers.ghost-secured.tls.certresolver=myresolver
+        - traefik.http.services.ghost.loadbalancer.server.port=2368
     env_file: .env_postgres
     networks:
       - postgres-network
