@@ -114,12 +114,7 @@ services:
       - postgres-network
     volumes:
       - /mnt/glusterfs:/var/lib/ghost/content
-    deploy: &swarm-03
-      placement:
-        constraints:
-          - node.hostname == swarm-01
-          - node.hostname == swarm-02
-          - node.hostname == swarm-03
+
 networks:
   postgres-network:
     external: true
