@@ -127,7 +127,7 @@ services:
     command:
       - --providers.docker=true
       - --providers.docker.swarmMode=true
-      - --providers.docker.exposedbydefault=false
+      - --providers.docker.endpoint=unix:///var/run/docker.sock
       - --entrypoints.web.address=:80
       - --entrypoints.websecure.address=:443
       - --certificatesresolvers.myresolver.acme.dnschallenge=true
@@ -141,13 +141,11 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock
       - /mnt/glusterfs/letsencrypt:/letsencrypt
     networks:
       - postgres-network
-    deploy:
-      mode: replicated
-      replicas: 1
+   deploy:
       placement:
         constraints:
           - node.role == manager
