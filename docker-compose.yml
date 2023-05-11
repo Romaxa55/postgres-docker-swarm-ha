@@ -120,11 +120,9 @@ networks:
     external: true
 
 volumes:
-  pg_data:
-    driver: local
-
-volumes:
   ghost-data:
     driver: glusterfs
     driver_opts:
       voluri: "localhost:/myvol"
+  pg_data:
+    driver: local
