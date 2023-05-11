@@ -10,6 +10,8 @@ services:
       - pg_data:/bitnami/postgresql
     env_file: .env_postgres
     deploy: &swarm-01
+      labels:
+        traefik.enable: "false"
       placement:
         constraints:
           - node.hostname == swarm-01
@@ -95,6 +97,8 @@ services:
     env_file: .env_postgres
     deploy:
       replicas: 2
+      labels:
+        traefik.enable: "false"
     healthcheck:
       test: ["CMD", "/opt/bitnami/scripts/pgpool/healthcheck.sh"]
       interval: 10s
