@@ -147,7 +147,9 @@ services:
       - postgres-network
     deploy:
       mode: replicated
-      replicas: 3
+      replicas: 1
+      constraints:
+          - node.hostname == swarm-01
 
 
 networks:
