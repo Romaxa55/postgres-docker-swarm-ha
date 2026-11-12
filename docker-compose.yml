@@ -3,7 +3,7 @@ version: '3.8'
 services:
   # Postgres Master
   pg-1: &pg
-    image: 'bitnami/postgresql-repmgr:latest'
+    image: 'soldevelo/postgresql-repmgr:latest'
     networks:
       - postgres-network
     volumes:
@@ -93,7 +93,7 @@ services:
       <<: *swarm-03
 
   pgpool:
-    image: docker.io/bitnami/pgpool
+    image: docker.io/soldevelo/pgpool
     env_file: .env_postgres
     deploy:
       replicas: 2
